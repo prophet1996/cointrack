@@ -1,5 +1,3 @@
-import "dart:convert";
-
 import 'package:cointrack/src/models/crypto_currency.dart';
 
 class ApiResponse<T> {

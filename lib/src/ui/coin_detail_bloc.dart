@@ -68,7 +68,7 @@ class CoinDetail extends StatelessWidget {
         ]),
       ),
       body: Column(
-        children: [StatsList()],
+        children: [StatsList(coin)],
       ),
     );
   }
