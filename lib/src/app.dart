@@ -25,6 +25,7 @@ class _App extends State<App> {
         brightness: Brightness.dark,
         //TODO: Check contrast here
         primaryColorLight: Colors.grey[350],
+        primaryColorDark: Colors.grey[800],
       ),
       home: Navigator(
         pages: [

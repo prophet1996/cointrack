@@ -237,7 +237,7 @@
                     "percent_change_30d": 18.27254864,
                     "percent_change_60d": 408.85179348,
                     "percent_change_90d": 422.60984025,
-                    "market_cap": 36093904148.977905,
+                    "'market_cap'": 36093904148.977905,
                     "last_updated": "2021-05-23T16:56:03.000Z"
                 }
             }

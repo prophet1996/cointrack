@@ -5,3 +5,15 @@ const MAX_SUPPLY_TOOLTIP_MESSAGE =
 
 const TOTAL_SUPPLY_TOOLTIP_MESSAGE =
     "The amount of coins that have been already created, minus any coins that have been burned. It is analogous to the outstanding shares in the stock market. If this data has not been submitted by the project or verified by the CMC team, total supply shows - -.";
+
+const coinDetailNavLabels = [
+  'Overview',
+  'Market',
+  'Historical Data',
+  "Wallets",
+  "News",
+  "Socials",
+  "Ratings",
+  "Analysis",
+  "Price Estimates"
+];

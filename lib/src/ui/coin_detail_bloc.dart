@@ -1,7 +1,9 @@
 import 'package:cointrack/src/models/crypto_currency.dart';
+import 'package:cointrack/src/ui/components/common_chip.dart';
 import 'package:flutter/material.dart';
 
 import '../utils.dart';
+import 'components/coin_detail_main.dart';
 import 'components/stats_list.dart';
 
 class CoinDetail extends StatelessWidget {
@@ -25,13 +27,7 @@ class CoinDetail extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Text(name),
-          Container(
-            child: Chip(
-              label: Text(symbol),
-              labelStyle: const TextStyle(fontSize: 10),
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-          ),
+          CommonChip(symbol: symbol),
           Expanded(
             child: Container(
               child: Flex(
@@ -68,7 +64,10 @@ class CoinDetail extends StatelessWidget {
         ]),
       ),
       body: Column(
-        children: [StatsList(coin)],
+        children: [
+          StatsList(coin: coin),
+          CoinDetailMain(coin: coin),
+        ],
       ),
     );
   }

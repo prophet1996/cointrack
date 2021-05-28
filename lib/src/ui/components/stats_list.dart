@@ -8,7 +8,7 @@ import '../../utils.dart';
 class StatsList extends StatelessWidget {
   final CryptoCurrency coin;
 
-  const StatsList(this.coin);
+  const StatsList({Key? key, required this.coin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,25 +40,7 @@ Widget getMarketCapStatsBlock(BuildContext context, CryptoCurrency coin) {
                 "Market Cap",
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
-              Tooltip(
-                message: MARKET_CAP_TOOLTIP_MESSAGE,
-                child: Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 2.0,
-                    horizontal: 5.0,
-                  ),
-                  child: Chip(
-                    shape: const CircleBorder(),
-                    labelPadding: EdgeInsets.all(3.0),
-                    label: Text(
-                      "i",
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              InfoToolTip(message: MARKET_CAP_TOOLTIP_MESSAGE),
             ]),
         Text(currencyFormatter.format(marketCap)),
       ],
@@ -81,25 +63,7 @@ Widget getDilutedMarketCapStatsBlock(
                 "Fully Diluted Market Cap",
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
-              Tooltip(
-                message: MARKET_CAP_TOOLTIP_MESSAGE,
-                child: Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 2.0,
-                    horizontal: 5.0,
-                  ),
-                  child: Chip(
-                    shape: const CircleBorder(),
-                    labelPadding: EdgeInsets.all(3.0),
-                    label: Text(
-                      "i",
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              InfoToolTip(message: MARKET_CAP_TOOLTIP_MESSAGE),
             ]),
         Text(currencyFormatter.format(marketCap)),
       ],
@@ -121,25 +85,7 @@ Widget getVolumnStatsBlock(BuildContext context, CryptoCurrency coin) {
                 "Market Cap",
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
-              Tooltip(
-                message: MARKET_CAP_TOOLTIP_MESSAGE,
-                child: Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 2.0,
-                    horizontal: 5.0,
-                  ),
-                  child: Chip(
-                    shape: const CircleBorder(),
-                    labelPadding: EdgeInsets.all(3.0),
-                    label: Text(
-                      "i",
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              InfoToolTip(message: MARKET_CAP_TOOLTIP_MESSAGE)
             ]),
         Text(currencyFormatter.format(marketCap)),
       ],
