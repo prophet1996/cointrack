@@ -21,4 +21,4 @@ class CryptoListingBloc {
   }
 }
 
-final bloc = CryptoListingBloc();
+final cryptoBloc = CryptoListingBloc();

@@ -1,4 +1,5 @@
 import 'package:cointrack/src/models/crypto_currency.dart';
+import 'package:cointrack/src/models/currency_stat.dart';
 
 class ApiResponse<T> {
   Status? status;
@@ -9,9 +10,17 @@ class ApiResponse<T> {
   ApiResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'] != null ? Status.fromJson(json['status']) : null;
     data = json["data"] != null
-        ? List<T>.from(json["data"].map((x) {
-            return CryptoCurrency.fromJson(x);
-          }))
+        ? List<T>.from(
+            json["data"].map(
+              (x) {
+                if (T.toString() == 'CryptoCurrency') {
+                  return CryptoCurrency.fromJson(x);
+                } else if (T.toString() == "CurrencyStat") {
+                  return CurrencyStat.fromJson(x);
+                }
+              },
+            ),
+          )
         : null;
   }
 }

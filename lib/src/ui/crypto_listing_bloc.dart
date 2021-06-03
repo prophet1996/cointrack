@@ -1,3 +1,6 @@
+import 'package:cointrack/src/blocs/currency_stat_listings_block.dart';
+import 'package:cointrack/src/models/currency_stat.dart';
+import 'package:cointrack/src/ui/components/currency_selector.dart';
 import 'package:cointrack/src/ui/crypto_list_item.dart';
 import 'package:flutter/material.dart';
 import '../models/api_response.dart';
@@ -11,13 +14,32 @@ class CryptoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchCryptoListings();
+    cryptoBloc.fetchCryptoListings();
+    currencyStatBloc.fetchCurrencyStatListings();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crypto'),
+        title: Row(
+          children: [
+            const Text('Crypto'),
+            StreamBuilder(
+              stream: currencyStatBloc.currencyStatListings,
+              builder:
+                  (context, AsyncSnapshot<ApiResponse<CurrencyStat>> snapshot) {
+                if (snapshot.hasData) {
+                  final data =
+                      snapshot.data?.data ?? [CurrencyStat(symbol: 'USD')];
+                  return CurrencySelector(currencyList: data);
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+          ],
+        ),
       ),
       body: StreamBuilder(
-        stream: bloc.cryptoListings,
+        stream: cryptoBloc.cryptoListings,
         builder:
             (context, AsyncSnapshot<ApiResponse<CryptoCurrency>> snapshot) {
           if (snapshot.hasData) {

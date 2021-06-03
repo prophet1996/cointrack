@@ -10,8 +10,7 @@ class CryptoCurrencyApiProvider {
   Client client = Client();
   Future<ApiResponse<CryptoCurrency>> fetchCryptoListings() async {
     // ignore: avoid_print
-  final _apiKey = API_KEY;
-    print("entered");
+    final _apiKey = API_KEY;
     Uri apiUrl = Uri.http(
         "pro-api.coinmarketcap.com", "/v1/cryptocurrency/listings/latest");
     final response =

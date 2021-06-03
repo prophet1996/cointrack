@@ -1,5 +1,3 @@
-import 'package:cointrack/src/models/api_response.dart';
-
 class CryptoCurrency {
   int? id;
   String? name;
