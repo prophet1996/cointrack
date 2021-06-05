@@ -46,23 +46,58 @@ class CoinOverviewStats extends StatelessWidget {
   }
 }
 
-class CoinConverter extends StatelessWidget {
+class CoinConverter extends StatefulWidget {
   final CryptoCurrency coin;
 
   const CoinConverter({Key? key, required this.coin}) : super(key: key);
+
+  State<StatefulWidget> createState() => _CoinCoverter(coin: coin);
+}
+
+class _CoinCoverter extends State<CoinConverter> {
+  final CryptoCurrency coin;
+
+  handleChangeValue(String text, bool currency) {
+    final value = double.tryParse(text);
+    if (value == null) {
+      cryptoCurrencyController.text = "";
+      currencyController.text = "";
+      return;
+    }
+    if (currency) {
+      cryptoCurrencyController.text = "${value * 2}";
+    } else {
+      currencyController.text = "${value / 2}";
+    }
+  }
+
+  _CoinCoverter({required this.coin});
+  final cryptoCurrencyController = TextEditingController();
+  final currencyController = TextEditingController();
+
+  @override
+  void dispose() {
+    currencyController.dispose();
+    cryptoCurrencyController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: [
-          getCoinConverterBox(coin, false),
-          getCoinConverterBox(null, true),
+          getCoinConverterBox(
+              coin, false, handleChangeValue, cryptoCurrencyController),
+          getCoinConverterBox(
+              null, true, handleChangeValue, currencyController),
         ],
       ),
     );
   }
 
-  Widget getCoinConverterBox(CryptoCurrency? coin, bool currency) {
+  Widget getCoinConverterBox(CryptoCurrency? coin, bool currency,
+      Function changeHandler, TextEditingController currencyController) {
     return Consumer<CurrencyModel>(builder: (context, currencyStat, child) {
       var image;
       final currencyCode = currencyStat.currency?.code ?? "USD";
@@ -108,13 +143,15 @@ class CoinConverter extends StatelessWidget {
               height: 50.0,
               width: 50.0,
               child: TextField(
-                textDirection: TextDirection.rtl,
+                textAlign: TextAlign.end,
                 keyboardType: TextInputType.number,
                 onChanged: (text) {
                   print('First text field: $text');
+                  changeHandler(text, currency);
                 },
+                controller: currencyController,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                 ].toList(),
               ),
             )
